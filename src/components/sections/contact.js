@@ -44,8 +44,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="max-w-container-max w-full mx-auto px-6 py-20">
-      <div className="glass-card rounded-[40px] p-8 md:p-16 relative overflow-hidden">
+    <section id="contact" className="max-w-container-max  mx-auto px-4 py-20  ">
+      <div className="glass-card rounded-[40px] p-4 md:p-16 relative overflow-hidden">
         <div className="ambient-glow -top-40 -left-40" />
 
         {/* Custom Toast Notification */}
