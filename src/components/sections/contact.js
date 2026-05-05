@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MapPin, Code, Globe, Briefcase, Send, CheckCircle2, XCircle, Loader2 } from "lucide-react";
+import {Phone, Mail, MapPin, Code, Globe, Briefcase, Send, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 
@@ -44,7 +44,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="max-w-container-max mx-auto px-6 py-20">
+    <section id="contact" className="max-w-container-max w-full mx-auto px-6 py-20">
       <div className="glass-card rounded-[40px] p-8 md:p-16 relative overflow-hidden">
         <div className="ambient-glow -top-40 -left-40" />
 
@@ -84,6 +84,7 @@ export default function Contact() {
             <div className="space-y-6">
               {[
                 { icon: Mail, label: "Email Me", value: "maksumulemon@gmail.com", color: "text-violet-400" },
+                { icon: Phone, label: "Call Me", value: "+880 1882679316", color: "text-green-400" },
                 { icon: MapPin, label: "Location", value: "Dhaka,Bangladesh", color: "text-blue-400" },
               ].map((info, i) => (
                 <div key={i} className="flex items-center gap-4 group">
