@@ -16,7 +16,7 @@ const navItems = [
   { name: "Tech", href: "#tech" },
   { name: "Education", href: "#education" },
   { name: "Project", href: "#work" },
-  { name: "Contact", href: "#contact" },
+  // { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -67,7 +67,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="bg-background/60 backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-[2rem] px-6 md:px-10 h-16 md:h-20 flex justify-between items-center shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-xl md:text-2xl font-headline font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400 cursor-pointer"
           >
@@ -115,12 +115,14 @@ export default function Navbar() {
               </Magnetic>
 
               <Magnetic strength={0.2}>
-                <Link href='/resume.pdf' >
-                  <button className="relative group overflow-hidden bg-violet-600 text-white px-8 py-2.5 rounded-xl font-bold transition-all active:scale-95">
-                    <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="relative z-10">Resume</span>
-                  </button>
-                </Link>
+
+                <button
+                  onClick={(e) => handleScroll(e, "#contact")}
+                  className="relative group overflow-hidden bg-violet-600 text-white px-8 py-2.5 rounded-xl font-bold transition-all active:scale-95">
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="relative z-10">Hire Me</span>
+                </button>
+
               </Magnetic>
             </div>
           </div>
@@ -169,11 +171,13 @@ export default function Navbar() {
                 </a>
               ))}
               <hr className="border-white/5" />
-              <Link href='/resume.pdf'>
-                <button className="w-full bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-4 rounded-2xl font-bold text-lg">
-                  Download Resume
+             
+                <button
+                 onClick={(e) => handleScroll(e, "#contact")}
+                 className="w-full bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-4 rounded-2xl font-bold text-lg">
+                  Hire Me
                 </button>
-              </Link>
+             
             </div>
           </motion.div>
         )}

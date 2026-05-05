@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import emon from "../../assets/emon.png";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import { Spotlight } from "../animations/spotlight";
 import { Magnetic } from "../animations/magnetic";
@@ -38,7 +38,7 @@ export default function Hero() {
             <Reveal delay={0.2}>
               <h2 className="text-2xl md:text-3xl font-medium text-text-secondary">Hello, I'm</h2>
             </Reveal>
-          <div className="relative h-[120px] md:h-[140px] flex items-center">
+            <div className="relative h-[120px] md:h-[140px] flex items-center">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={index}
@@ -66,7 +66,8 @@ export default function Hero() {
               {[
                 { icon: FaFacebookF, href: "https://facebook.com" },
                 { icon: GrInstagram, href: "https://instagram.com" },
-                { icon: FaLinkedinIn, href: "https://linkedin.com" }
+                { icon: FaLinkedinIn, href: "https://linkedin.com" },
+                { icon: FaGithub, href: "https://github.com/MaksumulEmon" }
               ].map((social, i) => (
                 <Magnetic key={i}>
                   <motion.a
@@ -111,16 +112,16 @@ export default function Hero() {
                 className="w-full h-full object-cover rounded-[1.5rem]"
               />
             </div>
-            
+
             {/* Floating Badges */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-6 -right-6 p-4 glass-card rounded-2xl border border-white/10 z-20 hidden md:block"
             >
               <span className="text-2xl">🚀</span>
             </motion.div>
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               className="absolute -bottom-6 -left-6 p-4 glass-card rounded-2xl border border-white/10 z-20 hidden md:block"

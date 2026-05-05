@@ -1,13 +1,71 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, MapPin, Code, Globe, Briefcase } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, MapPin, Code, Globe, Briefcase, Send, CheckCircle2, XCircle, Loader2 } from "lucide-react";
+import { useRef, useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function Contact() {
+  const formRef = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "success" });
+
+  const showToast = (message, type = "success") => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: "", type: "success" }), 5000);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // NOTE: Replace these with your actual EmailJS credentials
+      // You can get them by signing up at https://www.emailjs.com/
+      const result = await emailjs.sendForm(
+        "service_xxxxxx", // YOUR_SERVICE_ID
+        "template_xxxxxx", // YOUR_TEMPLATE_ID
+        formRef.current,
+        "user_xxxxxxxxxxxx" // YOUR_PUBLIC_KEY
+      );
+
+      if (result.text === "OK") {
+        showToast("Message sent successfully! I'll get back to you soon.", "success");
+        formRef.current.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      showToast("Oops! Something went wrong. Please try again later.", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="max-w-container-max mx-auto px-6 py-20">
       <div className="glass-card rounded-[40px] p-8 md:p-16 relative overflow-hidden">
         <div className="ambient-glow -top-40 -left-40" />
+
+        {/* Custom Toast Notification */}
+        <AnimatePresence>
+          {toast.show && (
+            <motion.div
+              initial={{ opacity: 0, y: 50, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
+              exit={{ opacity: 0, y: 20, x: "-50%" }}
+              className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-xl border ${
+                toast.type === "success" 
+                  ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400" 
+                  : "bg-red-500/20 border-red-500/50 text-red-400"
+              }`}
+            >
+              {toast.type === "success" ? <CheckCircle2 size={20} /> : <XCircle size={20} />}
+              <span className="font-semibold">{toast.message}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
         
         <div className="grid md:grid-cols-2 gap-16 relative z-10">
           <motion.div
@@ -55,14 +113,16 @@ export default function Contact() {
           </motion.div>
 
           <motion.form
+            ref={formRef}
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
             {[
-              { label: "Your Name", type: "text", placeholder: "John Doe" },
-              { label: "Email Address", type: "email", placeholder: "john@example.com" },
+              { label: "Your Name", type: "text", name: "user_name", placeholder: "John Doe" },
+              { label: "Email Address", type: "email", name: "user_email", placeholder: "john@example.com" },
             ].map((field, i) => (
               <motion.div
                 key={i}
@@ -75,7 +135,9 @@ export default function Contact() {
                 <label className="text-sm font-semibold text-text-secondary">{field.label}</label>
                 <input
                   type={field.type}
+                  name={field.name}
                   placeholder={field.placeholder}
+                  required
                   className="w-full bg-foreground/5 border border-glass-border rounded-xl px-6 py-4 text-foreground focus:outline-none focus:border-violet-500 transition-all focus:ring-1 focus:ring-violet-500"
                 />
               </motion.div>
@@ -90,18 +152,32 @@ export default function Contact() {
             >
               <label className="text-sm font-semibold text-text-secondary">Message</label>
               <textarea
+                name="message"
                 placeholder="How can I help you?"
                 rows={4}
+                required
                 className="w-full bg-foreground/5 border border-glass-border rounded-xl px-6 py-4 text-foreground focus:outline-none focus:border-violet-500 transition-all focus:ring-1 focus:ring-violet-500"
               />
             </motion.div>
 
             <motion.button
+              type="submit"
+              disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-gradient-to-r from-violet-600 to-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-violet-500/20 transition-all"
+              className="w-full bg-gradient-to-r from-violet-600 to-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-violet-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="animate-spin" size={20} />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send size={18} />
+                  Send Message
+                </>
+              )}
             </motion.button>
           </motion.form>
         </div>

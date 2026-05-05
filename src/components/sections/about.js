@@ -5,12 +5,13 @@ import { User, Code, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import emon2 from "../../assets/emon2.jpg"
+import Link from "next/link";
 
 export default function About() {
   return (
     <section id="about" className="bg-surface  py-20 relative overflow-hidden">
       <div className="max-w-container-max mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-        <motion.divs
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -31,7 +32,7 @@ export default function About() {
           >
             <Code size={40} className="text-blue-400" />
           </motion.div>
-        </motion.divs>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -57,18 +58,25 @@ export default function About() {
             ))}
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="bg-foreground/5 hover:bg-foreground/10 border border-glass-border text-foreground px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2 transition-all"
-          >
-            <Download size={20} />
-            Download CV
-          </motion.button>
+          <Link href="/resume.pdf">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-foreground/5 hover:bg-foreground/10 border border-glass-border text-foreground px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2 transition-all"
+            >
+              <Download size={20} />
+              Download CV
+            </motion.button>
+          </Link>
+
+
         </motion.div>
+
+
       </div>
-    </section>
+    </section >
   );
 }
+
 
 

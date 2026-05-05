@@ -12,12 +12,16 @@ export default function Footer() {
         transition={{ duration: 0.8 }}
         className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-6"
       >
-        <div className="text-lg font-bold text-foreground tracking-tighter">ALEX DEV</div>
-        
+        <div className="text-lg font-bold text-foreground tracking-tighter">EMON . DEV</div>
+
         <div className="text-text-secondary text-sm font-medium">
-          © {new Date().getFullYear()} Alex Dev. Built with precision.
+          © {new Date().getFullYear()} EMON  All Rights Reserved. <br />
+
+          <div className="text-center">
+            Built with 🚀 using Next.js
+          </div>
         </div>
-        
+
         <div className="flex gap-8">
           {["GitHub", "LinkedIn", "Twitter"].map((social) => (
             <a
