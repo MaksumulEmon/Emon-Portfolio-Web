@@ -1,45 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Code, ArrowRight, Recycle, Navigation, BarChart3 } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import img1 from "../../assets/emon2.jpg"
 import pro1 from "../../assets/pro1.png"
+import pro2 from "../../assets/pro2.png"
+import pro3 from "../../assets/pro3.png"
 import Image from "next/image";
 
 const projects = [
   {
     title: "Tiles-Gallery",
-    desc: "A modern Next.js Tiles Gallery web application...",
-    tags: ["Next.js", "TensorFlow"],
+    desc: "A modern Next.js Tiles Gallery web application featuring dynamic image grids, smooth transitions, and high-performance rendering.",
+    tags: ["Next.js", "Tailwind", "Framer Motion"],
     image: pro1,
     live: "https://tiles-gallery-three.vercel.app/",
     github: "https://github.com/MaksumulEmon/Tiles-Gallery",
     gradient: "from-violet-500/20 to-blue-500/20",
   },
   {
-    title: "Vectra",
-    desc: "High-speed vector navigation for complex datasets with real-time visualization.",
-    tags: ["Vue", "D3.js"],
-    image: img1,
-    live: "https://your-live-link.com",
-    github: "https://github.com/your-repo",
+    title: "Keen-Keeper",
+    desc: "KeenKeeper is a modern and intuitive friend tracking application that helps users monitor, manage, and stay connected with their friends' activities in real time. It provides a clean interface with categorized interaction types like calls, texts, and video activities.",
+    tags: ["React.js", "Tailwind CSS + DaisyUI", "API"],
+    image: pro2,
+    live: "https://b13-a07-keen-keeper.vercel.app/",
+    github: "https://github.com/MaksumulEmon/Keen-Keeper",
     gradient: "from-blue-500/20 to-emerald-500/20",
   },
   {
-    title: "Affiliated Pro",
-    desc: "Comprehensive affiliate management dashboard with automated payouts.",
-    tags: ["Node.js", "Stripe"],
-    image: img1,
+    title: "DigiTools-Platform",
+    desc: "This project is a responsive and feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
+    tags: [" React.js", "Tailwind CSS","JavaScript (ES6+)"],
+    image: pro3,
     live: "https://your-live-link.com",
     github: "https://github.com/your-repo",
     gradient: "from-orange-500/20 to-red-500/20",
   },
   {
-    title: "jkdfjhjdhf",
-    desc: "Comprehensive affiliate management dashboard with automated payoutsdfsdgggggds.",
-    tags: ["Node.js", "Stripe.fjhhgjfg"],
-    image: img1,
-    live: "https://your-live-link.comdsgsd",
+    title: "DigiTools-Platformjkfskgj",
+    desc: "This project is a responsive  xc cxand feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
+    tags: [" React.jsdfsf", "Tailwind CSS","JavaScript (ES6+)"],
+    image: pro3,
+    live: "https://your-live-link.comfgdf",
     github: "https://github.com/your-repo",
     gradient: "from-orange-500/20 to-red-500/20",
   },
@@ -63,25 +66,28 @@ const itemVariants = {
 export default function Projects() {
   return (
     <section id="work" className="max-w-container-max mx-auto px-6 py-20">
-      <div className="flex justify-between items-end mb-16">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          className="max-w-2xl"
         >
-          <h2 className="text-4xl font-headline font-bold text-foreground ">
+          <h2 className="text-4xl md:text-5xl font-headline font-bold text-foreground">
             Featured Projects
           </h2>
-          <p className="text-text-secondary mt-2">
-            A selection of my recent works across different sectors.
+          <p className="text-text-secondary mt-4 text-lg">
+            A selection of my recent works across different sectors, focusing on performance and user experience.
           </p>
         </motion.div>
 
         <motion.button
           whileHover={{ x: 5 }}
-          className="hidden md:flex text-violet-400 font-semibold items-center gap-2 hover:underline decoration-2 underline-offset-8 transition-all"
+          whileTap={{ scale: 0.95 }}
+          className="flex text-violet-400 font-semibold items-center gap-2 hover:underline decoration-2 underline-offset-8 transition-all group"
         >
-          View All Projects <ArrowRight size={18} />
+          View All Projects
+          <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
 
@@ -90,53 +96,75 @@ export default function Projects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-3 gap-8"
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {projects.map((project, i) => (
           <motion.div
             key={i}
             variants={itemVariants}
-            whileHover={{ y: -10 }}
-            className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full"
+            className="glass-card rounded-[2.5rem] overflow-hidden group flex flex-col h-full border border-glass-border hover:border-violet-500/30 transition-colors"
           >
-            <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
-              
+            {/* Image Section */}
+            <div className={`h-64 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover rounded-xl opacity-70 group-hover:scale-110 transition-transform duration-500"
+                className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                
-                <a href={project.live} target="_blank">
-                  <button className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
-                    <ExternalLink size={20} />
-                  </button>
-                </a>
-
-                <a href={project.github} target="_blank">
-                  <button className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
-                    <Code size={20} />
-                  </button>
-                </a>
-
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </div>
 
-            <div className="p-6 space-y-4 flex-grow flex flex-col">
-              <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{project.desc}</p>
-              <div className="flex gap-2 mt-auto">
+            {/* Content Section */}
+            <div className="p-8 space-y-6 flex-grow flex flex-col">
+              <div className="flex-grow">
+                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-violet-400 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-text-secondary text-base leading-relaxed line-clamp-3">
+                  {project.desc}
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] px-2 py-1 bg-foreground/5 rounded font-semibold text-text-secondary opacity-80 uppercase tracking-widest border border-glass-border">
+                  <span
+                    key={tag}
+                    className="text-[11px] px-3 py-1.5 bg-foreground/5 rounded-lg font-bold text-text-secondary uppercase tracking-widest border border-glass-border"
+                  >
                     {tag}
                   </span>
                 ))}
               </div>
-            </div>
 
+              {/* Action Buttons */}
+              <div className="flex flex-col md:flex-row gap-3 ">
+                <motion.a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all"
+                >
+                  <ExternalLink size={18} />
+                  Live Site
+                </motion.a>
+
+                <motion.a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-white/5 hover:bg-white/10 border border-glass-border text-foreground font-bold text-sm backdrop-blur-md transition-all"
+                >
+                  <FaGithub size={18} />
+                  Source Code
+                </motion.a>
+              </div>
+            </div>
           </motion.div>
         ))}
       </motion.div>

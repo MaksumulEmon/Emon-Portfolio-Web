@@ -128,7 +128,7 @@ export default function TechStack() {
       </motion.div>
 
       {/* Marquee Section */}
-      <div className="relative flex overflow-x-hidden py-16 border-y border-white/5">
+      <div className="relative flex overflow-x-hidden  border-y border-white/5">
         <div className="animate-marquee gap-12 flex items-center">
           {[...marqueeSkills, ...marqueeSkills,].map((skill, i) => (
             <div
