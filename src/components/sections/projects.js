@@ -1,12 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import img1 from "../../assets/emon2.jpg"
 import pro1 from "../../assets/pro1.png"
 import pro2 from "../../assets/pro2.png"
 import pro3 from "../../assets/pro3.png"
+import pro4 from "../../assets/pro4.png"
 import Image from "next/image";
 
 const projects = [
@@ -31,19 +34,19 @@ const projects = [
   {
     title: "DigiTools-Platform",
     desc: "This project is a responsive and feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
-    tags: [" React.js", "Tailwind CSS","JavaScript (ES6+)"],
+    tags: [" React.js", "Tailwind CSS", "JavaScript (ES6+)"],
     image: pro3,
     live: "https://your-live-link.com",
     github: "https://github.com/your-repo",
     gradient: "from-orange-500/20 to-red-500/20",
   },
   {
-    title: "DigiTools-Platformjkfskgj",
-    desc: "This project is a responsive  xc cxand feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
-    tags: [" React.jsdfsf", "Tailwind CSS","JavaScript (ES6+)"],
-    image: pro3,
-    live: "https://your-live-link.comfgdf",
-    github: "https://github.com/your-repo",
+    title: "Github-Issue-Tracker",
+    desc: "A lightweight GitHub-style issue tracker designed to organize tasks, report bugs, and streamline team collaboration. ",
+    tags: [" React.jsdfsf", "Tailwind CSS", "JavaScript (ES6+)"],
+    image: pro4,
+    live: "https://github-issue-tracker-a05.netlify.app/",
+    github: "https://github.com/MaksumulEmon/Github-Issue-Tracker",
     gradient: "from-orange-500/20 to-red-500/20",
   },
 ];
@@ -64,9 +67,13 @@ const itemVariants = {
 };
 
 export default function Projects() {
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
+
   return (
     <section id="work" className="max-w-container-max mx-auto px-6 py-20">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -81,14 +88,28 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <motion.button
-          whileHover={{ x: 5 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex text-violet-400 font-semibold items-center gap-2 hover:underline decoration-2 underline-offset-8 transition-all group"
-        >
-          View All Projects
-          <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-        </motion.button>
+        {!showAll && projects.length > 3 && (
+          <motion.button
+            onClick={() => setShowAll(true)}
+            whileHover={{ x: 5 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex text-violet-400 font-semibold items-center gap-2 hover:underline decoration-2 underline-offset-8 transition-all group"
+          >
+            View All Projects
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+        )}
+        {showAll && (
+          <motion.button
+            onClick={() => setShowAll(false)}
+            whileHover={{ x: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex text-violet-400 font-semibold items-center gap-2 hover:underline decoration-2 underline-offset-8 transition-all group"
+          >
+            Show Less
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform rotate-180" />
+          </motion.button>
+        )}
       </div>
 
       <motion.div
@@ -96,77 +117,84 @@ export default function Projects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        layout
       >
-        {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            variants={itemVariants}
-            className="glass-card rounded-[2.5rem] overflow-hidden group flex flex-col h-full border border-glass-border hover:border-violet-500/30 transition-colors"
-          >
-            {/* Image Section */}
-            <div className={`h-64 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-            </div>
-
-            {/* Content Section */}
-            <div className="p-8 space-y-6 flex-grow flex flex-col">
-              <div className="flex-grow">
-                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-violet-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-text-secondary text-base leading-relaxed line-clamp-3">
-                  {project.desc}
-                </p>
+        <AnimatePresence mode="popLayout">
+          {displayedProjects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, scale: 0.9 }}
+              layout
+              className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full border border-glass-border hover:border-violet-500/30 transition-colors"
+            >
+              {/* Image Section */}
+              <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] px-3 py-1.5 bg-foreground/5 rounded-lg font-bold text-text-secondary uppercase tracking-widest border border-glass-border"
+              {/* Content Section */}
+              <div className="p-6 space-y-4 flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-violet-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed line-clamp-3">
+                    {project.desc}
+                  </p>
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] px-3 py-1.5 bg-foreground/5 rounded-lg font-bold text-text-secondary uppercase tracking-widest border border-glass-border"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col md:flex-row gap-3 ">
+                  <motion.a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all"
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                    <ExternalLink size={18} />
+                    Live Site
+                  </motion.a>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col md:flex-row gap-3 ">
-                <motion.a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all"
-                >
-                  <ExternalLink size={18} />
-                  Live Site
-                </motion.a>
-
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-white/5 hover:bg-white/10 border border-glass-border text-foreground font-bold text-sm backdrop-blur-md transition-all"
-                >
-                  <FaGithub size={18} />
-                  Source Code
-                </motion.a>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-white/5 hover:bg-white/10 border border-glass-border text-foreground font-bold text-sm backdrop-blur-md transition-all"
+                  >
+                    <FaGithub size={18} />
+                    Source Code
+                  </motion.a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </motion.div>
     </section>
   );

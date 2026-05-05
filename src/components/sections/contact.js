@@ -25,8 +25,8 @@ export default function Contact() {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, label: "Email Me", value: "hello@ridwan.dev", color: "text-violet-400" },
-                { icon: MapPin, label: "Location", value: "London, United Kingdom", color: "text-blue-400" },
+                { icon: Mail, label: "Email Me", value: "maksfdf@gmail.com", color: "text-violet-400" },
+                { icon: MapPin, label: "Location", value: "Dhaka,Bangladesh", color: "text-blue-400" },
               ].map((info, i) => (
                 <div key={i} className="flex items-center gap-4 group">
                   <div className="w-12 h-12 glass-card rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">

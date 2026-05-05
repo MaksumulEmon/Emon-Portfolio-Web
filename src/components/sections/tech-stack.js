@@ -133,7 +133,7 @@ export default function TechStack() {
           {[...marqueeSkills, ...marqueeSkills,].map((skill, i) => (
             <div
               key={i}
-              className="text-5xl md:text-5xl font-headline font-black text-white/300 hover:text-violet-500/40 transition-colors cursor-default select-none uppercase tracking-tighter"
+              className="text-3xl md:text-5xl font-headline font-black text-white/300 hover:text-violet-500/40 transition-colors cursor-default select-none uppercase tracking-tighter"
 
             >
               {skill}
