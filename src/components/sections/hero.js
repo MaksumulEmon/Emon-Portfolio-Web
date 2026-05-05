@@ -64,9 +64,9 @@ export default function Hero() {
           <div className="flex gap-6 items-center">
             <div className="flex gap-4">
               {[
-                { icon: FaFacebookF, href: "https://facebook.com" },
-                { icon: GrInstagram, href: "https://instagram.com" },
-                { icon: FaLinkedinIn, href: "https://linkedin.com" },
+                { icon: FaFacebookF, href: "#" },
+                { icon: GrInstagram, href: "#" },
+                { icon: FaLinkedinIn, href: "#" },
                 { icon: FaGithub, href: "https://github.com/MaksumulEmon" }
               ].map((social, i) => (
                 <Magnetic key={i}>

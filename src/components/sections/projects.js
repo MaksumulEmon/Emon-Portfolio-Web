@@ -36,7 +36,7 @@ const projects = [
     desc: "This project is a responsive and feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
     tags: [" React.js", "Tailwind CSS", "JavaScript (ES6+)"],
     image: pro3,
-    live: "https://your-live-link.com",
+    live: " https://digitools-a06.vercel.app/",
     github: "https://github.com/your-repo",
     gradient: "from-orange-500/20 to-red-500/20",
   },

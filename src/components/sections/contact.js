@@ -83,7 +83,7 @@ export default function Contact() {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, label: "Email Me", value: "maksfdf@gmail.com", color: "text-violet-400" },
+                { icon: Mail, label: "Email Me", value: "maksumulemon@gmail.com", color: "text-violet-400" },
                 { icon: MapPin, label: "Location", value: "Dhaka,Bangladesh", color: "text-blue-400" },
               ].map((info, i) => (
                 <div key={i} className="flex items-center gap-4 group">
