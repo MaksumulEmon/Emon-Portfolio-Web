@@ -56,7 +56,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.6, 
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -69,7 +69,7 @@ export default function TechStack() {
 
       <div className="text-center mb-20">
         <Reveal width="100%">
-          <h2 className="text-4xl md:text-5xl font-headline font-bold text-foreground mb-6">Tech Stack</h2>
+          <h2 className="text-4xl md:text-5xl font-headline font-bold text-foreground mb-6"> Skill Section</h2>
         </Reveal>
         <Reveal width="100%" delay={0.3}>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">

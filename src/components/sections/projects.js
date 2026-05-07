@@ -5,51 +5,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
-import img1 from "../../assets/emon2.jpg"
-import pro1 from "../../assets/pro1.png"
-import pro2 from "../../assets/pro2.png"
-import pro3 from "../../assets/pro3.png"
-import pro4 from "../../assets/pro4.png"
+import { projects } from "../../lib/projects-data";
 import Image from "next/image";
-
-const projects = [
-  {
-    title: "Tiles-Gallery",
-    desc: "A modern Next.js Tiles Gallery web application featuring dynamic image grids, smooth transitions, and high-performance rendering.",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
-    image: pro1,
-    live: "https://tiles-gallery-three.vercel.app/",
-    github: "https://github.com/MaksumulEmon/Tiles-Gallery",
-    gradient: "from-violet-500/20 to-blue-500/20",
-  },
-  {
-    title: "Keen-Keeper",
-    desc: "KeenKeeper is a modern and intuitive friend tracking application that helps users monitor, manage, and stay connected with their friends' activities in real time. It provides a clean interface with categorized interaction types like calls, texts, and video activities.",
-    tags: ["React.js", "Tailwind CSS + DaisyUI", "API"],
-    image: pro2,
-    live: "https://b13-a07-keen-keeper.vercel.app/",
-    github: "https://github.com/MaksumulEmon/Keen-Keeper",
-    gradient: "from-blue-500/20 to-emerald-500/20",
-  },
-  {
-    title: "DigiTools-Platform",
-    desc: "This project is a responsive and feature-rich web platform that allows users to browse and buy subscriptions for various digital tools, software, and online services. It offers a seamless user experience with organized categories, clear pricing options, and easy navigation, making it simple for users to find and select the right digital solutions efficiently.",
-    tags: [" React.js", "Tailwind CSS", "JavaScript (ES6+)"],
-    image: pro3,
-    live: " https://digitools-a06.vercel.app/",
-    github: "https://github.com/your-repo",
-    gradient: "from-orange-500/20 to-red-500/20",
-  },
-  {
-    title: "Github-Issue-Tracker",
-    desc: "A lightweight GitHub-style issue tracker designed to organize tasks, report bugs, and streamline team collaboration. ",
-    tags: [" React.jsdfsf", "Tailwind CSS", "JavaScript (ES6+)"],
-    image: pro4,
-    live: "https://github-issue-tracker-a05.netlify.app/",
-    github: "https://github.com/MaksumulEmon/Github-Issue-Tracker",
-    gradient: "from-orange-500/20 to-red-500/20",
-  },
-];
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -123,7 +81,7 @@ export default function Projects() {
         <AnimatePresence mode="popLayout">
           {displayedProjects.map((project, i) => (
             <motion.div
-              key={project.title}
+              key={project.id}
               variants={itemVariants}
               initial="hidden"
               animate="visible"
@@ -165,31 +123,18 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col md:flex-row gap-3 ">
-                  <motion.a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold text-sm shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all"
-                  >
-                    <ExternalLink size={18} />
-                    Live Site
-                  </motion.a>
-
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded bg-white/5 hover:bg-white/10 border border-glass-border text-foreground font-bold text-sm backdrop-blur-md transition-all"
-                  >
-                    <FaGithub size={18} />
-                    Source Code
-                  </motion.a>
+                {/* Action Button */}
+                <div className="pt-2">
+                  <Link href={`/project/${project.id}`} className="w-full block">
+                    <motion.button
+                      whileHover={{ scale: 1.02, backgroundColor: "rgba(139, 92, 246, 0.1)" }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-violet-500/30 text-violet-400 font-bold text-sm transition-all group-hover:border-violet-500/60"
+                    >
+                      View Project Details
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
