@@ -13,10 +13,10 @@ const techData = [
     bg: "bg-violet-500/10",
     border: "border-violet-500/20",
     glow: "shadow-[0_0_20px_rgba(139,92,246,0.1)]",
-    skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "TypeScript","JavaScript"],
   },
   {
-    category: "Backend & DevOps",
+    category: "Backend ",
     icon: Cloud,
     color: "text-blue-400",
     bg: "bg-blue-500/10",
@@ -31,13 +31,13 @@ const techData = [
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/20",
     glow: "shadow-[0_0_20px_rgba(16,185,129,0.1)]",
-    skills: ["JavaScript", "Python","typeScript", "Github", "Git", "Redis","vercel" ],
+    skills: ["JavaScript", "Python", "Java","kotlin","C", "PHP","VS Code", "Github", "Git", "Redis","vercel" ],
   },
 ];
 
 const marqueeSkills = [
-  "React", "Next.js", "Node.js", "TailwindCSS", "Framer Motion",
-  "GraphQL", "AWS", "PostgreSQL", "Redis", "Python", "TypeScript", "Docker", "Express", "MongoDB"
+  "React", "Next.js", "Node.js", "TailwindCSS",
+   "AWS", "PostgreSQL", "Redis", "Python", "Java","Kotlin", "Docker", "Express", "MongoDB"
 ];
 
 const containerVariants = {
@@ -64,7 +64,7 @@ const cardVariants = {
 
 export default function TechStack() {
   return (
-    <section id="tech" className="max-w-7xl mx-auto px-6 py-32 relative overflow-hidden">
+    <section id="skill" className="max-w-7xl mx-auto px-6 py-32 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/5 blur-[120px] -z-10 rounded-full" />
 
       <div className="text-center mb-20">

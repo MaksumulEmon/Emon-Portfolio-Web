@@ -65,7 +65,7 @@ export default function About() {
               className="bg-foreground/5 hover:bg-foreground/10 border border-glass-border text-foreground px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2 transition-all"
             >
               <Download size={20} />
-              Download CV
+              Resume
             </motion.button>
           </Link>
 

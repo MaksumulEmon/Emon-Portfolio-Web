@@ -13,7 +13,7 @@ import { useLenis } from "lenis/react";
 const navItems = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
-  { name: "Tech", href: "#tech" },
+  { name: "Skill", href: "#skill" },
   { name: "Education", href: "#education" },
   { name: "Project", href: "#work" },
   // { name: "Contact", href: "#contact" },
