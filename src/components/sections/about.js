@@ -58,7 +58,7 @@ export default function About() {
             ))}
           </div>
 
-          <Link href="/resume.pdf">
+          {/* <Link href="/resume.pdf">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -67,7 +67,7 @@ export default function About() {
               <Download size={20} />
               Resume
             </motion.button>
-          </Link>
+          </Link> */}
 
 
         </motion.div>

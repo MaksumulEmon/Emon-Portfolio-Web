@@ -8,10 +8,26 @@ import { GrInstagram } from "react-icons/gr";
 import { Spotlight } from "../animations/spotlight";
 import { Magnetic } from "../animations/magnetic";
 import { Reveal } from "../animations/reveal";
+import { Download, File } from "lucide-react";
+// import { Projector } from "lucide-react";
+import Link from "next/link";
+import { useLenis } from "lenis/react";
 
 export default function Hero() {
   const texts = ["Md Maksumul Haque Emon", "MERN Stack Developer", "Future Full Stack Developer"];
   const [index, setIndex] = useState(0);
+  const lenis = useLenis();
+
+  const handleScroll = (e, href) => {
+    e.preventDefault();
+    if (lenis) {
+      lenis.scrollTo(href, {
+        offset: 0,
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -82,6 +98,9 @@ export default function Hero() {
               ))}
             </div>
 
+
+
+
             {/* <Magnetic strength={0.2}>
               <motion.button 
                 whileHover={{ scale: 1.05 }}
@@ -94,6 +113,39 @@ export default function Hero() {
             </Magnetic> */}
 
           </div>
+
+
+          <div className="flex gap-5">
+            
+            <Link href="/resume.pdf">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className=" bg-violet-600 hover:bg-foreground/10 border border-glass-border text-foreground px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2 transition-all"
+              >
+                <Download size={20} />
+                Resume
+              </motion.button>
+            </Link>
+
+
+
+            <motion.a
+              href="#work"
+              onClick={(e) => handleScroll(e, "#work")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-foreground/5 hover:bg-foreground/10 border border-glass-border text-foreground px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2 transition-all"
+            >
+              <File size={20} />
+              Projects
+            </motion.a>
+
+          </div>
+
+
+
+
         </div>
 
         <motion.div

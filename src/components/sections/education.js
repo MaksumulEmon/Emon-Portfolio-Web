@@ -5,7 +5,7 @@ import { School, BookText, GraduationCap } from "lucide-react";
 
 const educationData = [
   {
-    year: "2018 - 2022",
+    year: "2022 - 2026",
     title: "Diploma In Computer Science & Technology",
     desc: " Chapainawabganj polytechnic institute",
     icon: GraduationCap,
@@ -22,7 +22,7 @@ const educationData = [
   },
   {
     year: "2016 - 2018",
-    title: "Junior School Certificate",
+    title: "Junior School Certificate (JSC)",
     desc: "R.B Govt High School, Joypurhat",
     icon: BookText,
     color: "text-emerald-400",
